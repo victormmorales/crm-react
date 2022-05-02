@@ -72,7 +72,7 @@ const Formulario = () => {
 
               <div className="mb-4">
                 <label className="text-gray-800" htmlFor="email">
-                  Email:
+                  Email
                 </label>
                 <Field
                   id="email"
