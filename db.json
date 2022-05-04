@@ -1,0 +1,36 @@
+{
+  "clientes": [
+    {
+      "nombre": "juan",
+      "empresa": "juan",
+      "email": "victor.morales+1@criptan.com",
+      "telefono": "1",
+      "notas": "cliente",
+      "id": 1
+    },
+    {
+      "nombre": "juan II",
+      "empresa": "juan",
+      "email": "victor.morales+1@criptan.com",
+      "telefono": "1",
+      "notas": "cliente",
+      "id": 2
+    },
+    {
+      "nombre": "Karem",
+      "empresa": "Karem diseño",
+      "email": "victor.morales+1@criptan.com",
+      "telefono": "1",
+      "notas": "sda",
+      "id": 3
+    },
+    {
+      "nombre": "Paulina",
+      "empresa": "construcciones",
+      "email": "victor.morales+1@criptan.com",
+      "telefono": "1",
+      "notas": "",
+      "id": 4
+    }
+  ]
+}

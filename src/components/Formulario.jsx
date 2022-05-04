@@ -1,22 +1,46 @@
 import React from "react";
 import { Formik, Form, Field } from "formik";
+import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import Alerta from "./Alerta";
 
 const Formulario = () => {
+  const navigate = useNavigate();
+
   const nuevoClienteSchema = Yup.object().shape({
     nombre: Yup.string()
       .min(3, "El nombre es muy corto")
       .max(20, "El nombre es muy largo")
       .required("El nombre es obligatorio"),
-    // empresa: "",
-    // email: "",
-    // telefono: "",
-    // notas: "",
+    empresa: Yup.string().required("La empresa es obligatoria"),
+    email: Yup.string()
+      .email("Email no válido")
+      .required("El email es obligatorio"),
+    telefono: Yup.number()
+      .integer("El número no es válido")
+      .positive("El número no es válido")
+      .typeError("El número no es válido"),
   });
 
-  const handleSubmit = (valores) => {
-    console.log(valores);
+  const handleSubmit = async (valores) => {
+    try {
+      const url = "http://localhost:4000/clientes";
+      const respuesta = await fetch(url, {
+        method: "POST",
+        body: JSON.stringify(valores),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const resultado = await respuesta.json();
+      console.log(respuesta);
+      console.log(resultado);
+
+      navigate("/clientes");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -33,7 +57,10 @@ const Formulario = () => {
           telefono: "",
           notas: "",
         }}
-        onSubmit={(values) => handleSubmit(values)}
+        onSubmit={async (values, { resetForm }) => {
+          await handleSubmit(values);
+          resetForm();
+        }}
         validationSchema={nuevoClienteSchema}
       >
         {({ errors, touched }) => {
@@ -68,6 +95,10 @@ const Formulario = () => {
                   placeholder="Nombre de la empresa"
                   name="empresa"
                 />
+
+                {errors.empresa && touched.empresa ? (
+                  <Alerta>{errors.empresa}</Alerta>
+                ) : null}
               </div>
 
               <div className="mb-4">
@@ -81,6 +112,9 @@ const Formulario = () => {
                   placeholder="info@correo.com"
                   name="email"
                 />
+                {errors.email && touched.email ? (
+                  <Alerta>{errors.email}</Alerta>
+                ) : null}
               </div>
 
               <div className="mb-4">
@@ -94,6 +128,9 @@ const Formulario = () => {
                   placeholder="666 000 666"
                   name="telefono"
                 />
+                {errors.telefono && touched.telefono ? (
+                  <Alerta>{errors.telefono}</Alerta>
+                ) : null}
               </div>
 
               <div className="mb-4">
