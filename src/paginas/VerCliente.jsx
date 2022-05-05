@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import Spinner from "../components/Spinner";
 
 const VerCliente = () => {
   const [cliente, setCliente] = useState({});
@@ -19,7 +20,9 @@ const VerCliente = () => {
       } catch (error) {
         console.log(error);
       }
-      setCargando(false);
+      setTimeout(() => {
+        setCargando(false);
+      }, 1500);
     };
     obternerClienteAPI();
   }, []);
@@ -38,7 +41,7 @@ const VerCliente = () => {
   ) : (
     <div>
       {cargando ? (
-        "cargando..."
+        <Spinner />
       ) : (
         <>
           <h1 className="font-black text-4xl text-blue-900">
