@@ -15,14 +15,6 @@
       "telefono": "1",
       "notas": "",
       "id": 4
-    },
-    {
-      "nombre": "Edgar",
-      "empresa": "Codigo con juan",
-      "email": "correo@correo.com",
-      "telefono": "666 000 666",
-      "notas": "el cliente solicita un server",
-      "id": 5
     }
   ]
 }
