@@ -42,7 +42,7 @@ const Inicio = () => {
   return (
     <div>
       <h1 className="font-black text-4xl text-blue-900">Clientes</h1>
-      <p className="mt-3">Administra tus clientes:</p>
+      <p className="mt-3">Administra tus clientes</p>
 
       <table className="w-full mt-5 table-auto shadow bg-white ">
         <thead className="bg-blue-800 text-white">
